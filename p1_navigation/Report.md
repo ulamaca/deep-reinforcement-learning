@@ -48,9 +48,9 @@ Research Papers:
 - [Double DQN 2016](https://arxiv.org/abs/1509.06461)
 
 Related Projects:
-- dalmia
-- danielabarbosa
-- yingweiyu
+- [dalmia](https://github.com/dalmia/udacity-deep-reinforcement-learning)
+- [danielabarbosa](https://github.com/danielnbarbosa/drlnd_navigation)
+- [yingweiyu](https://github.com/yingweiy/drlnd_project1_navigation)
 
 ### **Appendix**
 1. Key equations and the corresponding lines of codes in the project are summarized in ![./equations.png](./equations.png) 
