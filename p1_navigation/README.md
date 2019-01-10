@@ -9,7 +9,6 @@
 In this project, Deep Q-Network (DQN) and its variants (Dueling DQN, Double DQN) are implemented and trained to navigate (and collect bananas!) in a large, square world. 
 
 ![Trained Agent][image1]
-[](results/animation/dddqn-demo.gif)
 
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
 
