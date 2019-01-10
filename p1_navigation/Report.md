@@ -74,8 +74,10 @@ Related Projects:
 
 (*1.) Soft-update is a way to update the target network by mixing the current local parameters and current target parameters one via the following formula:
 
-$w_{target} \leftarrow \tau * w_{local} + (1-\tau) * w_{target}$
+$$
+w_{target} \leftarrow \tau * w_{local} + (1-\tau) * w_{target}
+$$
 
-The original DQN uses hard-update (i.e. $\tau=1$), meaning that the target network is fully updated by the current local network. In practice, hard-update needs to be updated less frequently since it requires the local network to first accumulate more knowledge. The choice of hard-update is exposed in the project, and one can experiment with it by setting soft-update to be False.
+The original DQN uses hard-update (i.e. $$\tau=1$$), meaning that the target network is fully updated by the current local network. In practice, hard-update needs to be updated less frequently since it requires the local network to first accumulate more knowledge. The choice of hard-update is exposed in the project, and one can experiment with it by setting soft-update to be False.
 
  
