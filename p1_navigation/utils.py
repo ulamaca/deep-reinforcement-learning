@@ -76,14 +76,12 @@ def random_color(choice=False):
         return random.choice(lib)
 
 
-def watch(env, agent, brain_name):
+def play(env, agent, params_path='data/dddqn-1/checkpoint.pth'):
 
-    # load saved weights
-    agent.qnetwork_local.load_state_dict(torch.load('data/dddqn-1/checkpoint.pth'))
-    # initialize environment
+    agent.qnetwork_local.load_state_dict(torch.load(params_path))
+    brain_name = env.brain_names[0]  # this is specific for the Unity Environment
     env_info = env.reset(train_mode=False)[brain_name]  # reset the environment
     state = env_info.vector_observations[0]  # get the initial state
-    # interact with environment
     for _ in range(300):
         action = agent.act(state)
         env_info = env.step(action)[brain_name]  # send the action to the environment
@@ -91,3 +89,18 @@ def watch(env, agent, brain_name):
         done = env_info.local_done[0]  # see if episode has finished
         if done:
             break
+
+def get_env_spec(env):
+    """
+    get and print necessary specifications from a Unity environment
+    :param env: a unity environment instance
+    :return: a dict with state and action size of the env
+    """
+    brain_name = env.brain_names[0]
+    brain = env.brains[brain_name]
+    env_info = env.reset(train_mode=True)[brain_name]
+    action_size = brain.vector_action_space_size
+    state = env_info.vector_observations[0]
+    state_size = len(state)
+    return {"state_size":state_size,
+            "action_size":action_size}

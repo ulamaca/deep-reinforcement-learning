@@ -9,8 +9,8 @@ done
 
 # real run
 for i in {1..5}; do
-    python run.py -n "eduddqn-$i" -dd -du -ra "$i"
-    python run.py -n "edddqn-$i" -dd -ra "$i"
-    python run.py -n "edudqn-$i" -du -ra "$i"
-    python run.py -n "edqn-$i" -ra "$i"
+    python run.py -n "duddqn-$i" -dd -du -ra "$i"
+    python run.py -n "dddqn-$i" -dd -ra "$i"
+    python run.py -n "dudqn-$i" -du -ra "$i"
+    python run.py -n "dqn-$i" -ra "$i"
 done

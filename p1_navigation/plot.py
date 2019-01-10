@@ -3,11 +3,15 @@ import glob
 from collections import deque
 import numpy as np
 from utils import random_color
+import argparse
 
-#LIST_OF_MODELS=["dddqn", "duddqn", "dudqn", "dqn"] # improvement option-1: automize this selection process
-LIST_OF_MODELS=["edddqn", "eduddqn", "edudqn", "edqn"] # improvement option-1: automize this selection process
 GOAL_SCORE=13.0
 LINESTYLES = ['-', '--', ':', '-.']
+
+parser=argparse.ArgumentParser(description="Plot the statistics of training traces")
+parser.add_argument('-l', '--list_of_models', type=str, metavar='', required=True, help="specify model(s) to plot. For multiple model, specify by a string with comma, for example, model1,model2,.. One can specify at most four models")
+args=parser.parse_args()
+
 
 def load_training_trace_as_list(file_path):
     """
@@ -68,7 +72,7 @@ def get_plotting_data(list_of_models):
         data_paths = glob.glob('./data/{}*/progress.txt'.format(model))
         data_paths = sorted(data_paths)
 
-        scores = []  # todo, better the score collect mechanisms
+        scores = []
         avg_scores = []
 
         for data_path in data_paths:
@@ -84,14 +88,19 @@ def get_plotting_data(list_of_models):
 
 def plot_avg_training_traces(scores_dict):
     fig = plt.figure(figsize=(20, 30))
-    for i, model in enumerate(list(scores_dict.keys())): # todo: enumerate(list()) can be better
+    for i, model in enumerate(list(scores_dict.keys())):
         tmp=scores_dict[model]
+        if i<=3:
+            # currently, only support for different linestyles for at most four models
+            linestyle=LINESTYLES[i]
+        else:
+            linestyle='-'
         plt.subplot(211)
         plot_avg_scores_with_confidence(tmp['scores'], model_name=model,
-                                        color=random_color(i), linestyle=LINESTYLES[i])
+                                        color=random_color(i), linestyle=linestyle)
         plt.subplot(212)
         plot_avg_scores_with_confidence(tmp['window-avg-scores'], model_name=model,
-                                        color=random_color(i), linestyle=LINESTYLES[i])
+                                        color=random_color(i), linestyle=linestyle)
 
     plt.xlabel('#Episodes')
     plt.subplot(211)
@@ -129,13 +138,14 @@ def plot_best_training_traces(scores_dict):
     plt.legend()
     return fig
 
+
 if __name__ == "__main__":
     # 1. formatting data as a dict
-    all_scores = get_plotting_data(LIST_OF_MODELS)
+    print(args.list_of_models.split(','))
+    all_scores = get_plotting_data(args.list_of_models.split(','))
     # 2. get plots
     # 2.1 plot avg
     plot_avg_training_traces(all_scores)
     # 2.2 plot the best performing agent
     plot_best_training_traces(all_scores)
     plt.show()
-

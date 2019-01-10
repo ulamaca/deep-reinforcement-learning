@@ -25,7 +25,6 @@ class Agent():
     def __init__(self, state_size, action_size, seed,
                  double_dqn=False, dueling_dqn=False, dqn_way_update=False):
 
-        # todo, better version of argument stup
         """Initialize an Agent object.
         
         Params

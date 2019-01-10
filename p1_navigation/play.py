@@ -1,6 +1,6 @@
 from utils import play, get_env_spec
 from unityagents import UnityEnvironment
-from dqn_agent import Agent
+from dqn_agents import Agent
 import argparse
 
 parser=argparse.ArgumentParser(description="Play an agent acting in the environment")
