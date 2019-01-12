@@ -1,0 +1,9 @@
+# initialization
+theta_old=theta # 
+
+for epoch in K: # epochs here in ppo means how many times of total parallel training
+    for t in T_trajectories: # run in parallel
+        Et = rollout(p(theta_old)
+        E.append(Et)
+   optimize the surrogate(\theta, \theta_old) w.r.t \theta
+   
