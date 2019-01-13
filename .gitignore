@@ -102,3 +102,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# temporary for submitting individual project
+./*
+!./p1_navigation
