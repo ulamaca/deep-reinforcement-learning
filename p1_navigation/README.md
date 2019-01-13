@@ -38,6 +38,7 @@ Setting customized options is possible by specified ```-arg_name value``` right 
 ```
 python run.py -name exp-name -dd -du -seed 453
 ```
+After trained, two files will be saved in ./data/exp-name: progress.txt and checkpoint.pth. progress.txt saves the training score traces and checkpoint.pth is the model parameters of the trained agent.
 More detailed instructions can be found using:
 ```
 python run.py -h
@@ -46,18 +47,9 @@ python run.py -h
 ```
 python plot.py -l model1,model2...
 ```
-*Note that if you would like to test a model with mutliple training runs, please name your experiment follwoing the convention: experiment-name-i (i is the run no.) so that the program can compute the average over all the trials. 
+*Note that if you would like to test a model with mutliple training runs, please name your experiment follwoing the convention: model-name-i (i is the run no.) so that the program can compute the average over all the trials. 
 3. To see how your favorite agent plays, use
 ```
 python play.py -p path/to/model-params 
 ```
 if the model is a dueling DQN, please add another argument -du because it will need to setup different model architecture
-
-### Dependencies
-numpy==1.14.5
-
-matplotlib==2.1.0
-
-torch==1.0.0
-
-unityagents==0.4.0
